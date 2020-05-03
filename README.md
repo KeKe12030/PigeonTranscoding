@@ -10,5 +10,9 @@ Pigeon系统GITHUB地址：https://github.com/kasuganosoras/Pigeon
 
 ---
 
-用Java自带的文字转换试了一下，不能从win1252完美转换UTF8，所以百度了一个网站，通过JSOUP POST了数据到网站，做了一些正则匹配处理。
-（网站地址：http://www.mytju.com/classCode/tools/messyCodeRecover.asp）
+用Java自带的功能实现文字编码转换试了一下，不能从win1252完美转换UTF8，所以百度了一个网站，通过JSOUP POST了数据到网站，做了一些正则匹配处理。如果有其他需要可以自己DIY。
+（网站地址：http://www.mytju.com/classCode/tools/messyCodeRecover.asp ）
+
+---
+
+我的Pigeon地址：https://blog.mcplugin.cn/pigeon
