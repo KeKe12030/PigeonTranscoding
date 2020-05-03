@@ -15,4 +15,8 @@ Pigeon系统GITHUB地址：https://github.com/kasuganosoras/Pigeon
 
 ---
 
+SQLUtils那个类是瞎写的，凑活着用吧，awa
+
+---
+
 我的Pigeon地址：https://blog.mcplugin.cn/pigeon
