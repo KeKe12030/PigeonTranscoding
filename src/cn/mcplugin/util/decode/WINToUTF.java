@@ -14,24 +14,34 @@ import org.jsoup.nodes.Document;
 
 public class WINToUTF {
 	public static String getApiText(String url,Map<String,String> map) {
-		//获取请求连接
-		Connection con = Jsoup.connect(url);
-		//遍历生成参数
-		if(map!=null){
-			for (Entry<String, String> entry : map.entrySet()) {     
-				//添加参数
-				con.data(entry.getKey(), entry.getValue());
-			} 
+		int i =0;
+		while(i<3) {
+			i++;
+			//获取请求连接
+			Connection con = Jsoup.connect(url);
+			//遍历生成参数
+			if(map!=null){
+				for (Entry<String, String> entry : map.entrySet()) {     
+					//添加参数
+					con.data(entry.getKey(), entry.getValue());
+				} 
+			}
+			//插入cookie（头文件形式）
+			Document doc = null;
+			try {
+				doc = con.post();
+			} catch (IOException e) {
+				// TODO 自动生成的 catch 块
+				if(i==2) {
+					System.out.println("===转换接口出错了===");
+					e.printStackTrace();
+				}
+				
+				continue;
+			}  
+			return con==null? null:doc.text().toString();
 		}
-		//插入cookie（头文件形式）
-		Document doc = null;
-		try {
-			doc = con.post();
-		} catch (IOException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}  
-		return con==null? null:doc.text().toString();
+		return null;
 	}
 	public static String getDecodeString(String badStr) {
 		badStr = badStr.replaceAll("\n", "<br/>").replaceAll("\r\n", "<br />");
@@ -48,11 +58,11 @@ public class WINToUTF {
 		return badStr;
 	}
 	public static void main(String[] args) {
-//		System.out.println(getDecodeString("è‚è‚è‚è‚è‚ï¼Œï¼Œè‚¾ç–¼ðŸ’”\r\n" + 
-//				"<img src=\"https://pic.downk.cc/item/5e720f1be83c3a1e3afe8ebc.png\">"));
+		//		System.out.println(getDecodeString("è‚è‚è‚è‚è‚ï¼Œï¼Œè‚¾ç–¼ðŸ’”\r\n" + 
+		//				"<img src=\"https://pic.downk.cc/item/5e720f1be83c3a1e3afe8ebc.png\">"));
 		ManageSQL.conSql();
 		System.out.println("已经连接完毕");
-		ArrayList<String> arr = ManageSQL.getStrListBySelect("SELECT `content` FROM `posts` WHERE id!=103 AND id!=104 AND id!=105");
+		ArrayList<String> arr = ManageSQL.getStrListBySelect("SELECT `content` FROM `posts` WHERE id!=103 AND id!=104 AND id!=105 AND id>50");
 		int i =0;
 		for(String str : arr) {
 			i++;
